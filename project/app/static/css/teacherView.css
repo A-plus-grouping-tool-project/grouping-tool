@@ -1,0 +1,61 @@
+body {
+  margin: 5px;
+}
+
+#header {
+  border-bottom-style: solid;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+#mainTitle {
+  display: inline-block;
+  margin: 10px;
+  position: absolute;
+  right: 40%;
+}
+
+#userIcon{
+  display: inline-block;
+  margin: 10px;
+  position: absolute;
+  right: 10%;
+}
+
+#logout {
+  display:inline-block;
+  margin: 10px;
+  position:absolute;
+  right: 0;
+}
+
+#sidebar {
+  border-style: solid;
+  border-width: thin;
+  height: 100px;
+  padding: 15px;
+}
+
+#mainContent {
+  padding: 15px;
+}
+
+#courseName {
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  width: 20%;
+}
+
+#groupMembers {
+  width: 40%;
+}

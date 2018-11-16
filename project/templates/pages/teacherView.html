@@ -1,51 +1,59 @@
+{% load staticfiles %}
 {% load bootstrap3 %}
 {% bootstrap_css %}
 
 <html lang="en">
 <head>
   <title>Teacher view</title>
+  <link rel="stylesheet" href="{% static 'css/teacherView.css' %}">
 </head>
-<body style="margin:5px">
-  <div id="header" style="border-bottom-style: solid; height: 60px; margin-bottom: 10px">
-    <h1 id="mainTitle" style="display:inline-block; margin: 10px; position:absolute; right: 40%">A+ ryhmäytystyökalu</h1>
-    <div id="userIcon" style="display:inline-block; margin: 10px; position:absolute; right: 10%">
+<body>
+  <div id="header">
+    <h1 id="mainTitle">A+ ryhmäytystyökalu</h1>
+    <div id="userIcon">
       <span class="glyphicon glyphicon-user"></span>
     </div>
-    <div id="logout" style="display:inline-block; margin: 10px; position:absolute; right: 0">
+
+    <div id="logout">
       <button class="btn">
         <span class="glyphicon glyphicon-log-out"></span>
         Logout
       </button>
     </div>
+    
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div id="sideBar" class="col-sm-3" style="border-style: solid; border-width: thin; height: 100px; padding: 15px">
+      <div id="sideBar" class="col-sm-3">
         <p>Menu</p>
       </div>
-      <div id="mainContent" class="col-sm-9" style="padding: 15px">
+      <div id="mainContent" class="col-sm-9">
         <p id="path">Etusivu/kurssi1</p>
-        <h2 id="CourseName" style="text-align:center;">Kurssi 1</h2>
+        <h2 id="courseName">Kurssi 1</h2>
+
         <div id="controls">
-          <button class="btn" id="addGroup" style="display:inline-block;">lisää ryhmä</button>
-          <button class="btn" id="autoGroup" style="display:inline-block;">luo automaattiset ryhmät</button>
-          <button class="btn" id="groupSettings" style="display:inline-block;">ryhmäasetukset</button>
+          <button class="btn" id="addGroup">lisää ryhmä</button>
+          <button class="btn" id="autoGroup">luo automaattiset ryhmät</button>
+          <button class="btn" id="groupSettings">ryhmäasetukset</button>
         </div>
-        <h2 id="GroupTitle">Ryhmät</h2>
-        <table id="groups" class="table-striped" style="width:100%">
+
+        <h2 id="groupTitle">Ryhmät</h2>
+        
+        <table id="groups" class="table-striped">
           <tr>
-            <th id="groupName" width="20%">Nimi</th>
-            <th id="groupMembers" width="40%">Jäsenet</th>
-            <th id="groupType" width="20%">Ryhmätyyppi</th>
-            <th id="editGroup" width="20%"></th>
+            <th id="groupName">Nimi</th>
+            <th id="groupMembers">Jäsenet</th>
+            <th id="groupType">Ryhmätyyppi</th>
+            <th id="editGroup"></th>
           </tr>
           <tr>
             <td>Test</td>
             <td>Test</td>
             <td>Test</td>
-            <td><button id="editGroup" class="btn">Edit</button></td>
+            <td><button id="editGroupBtn" class="btn">Edit</button></td>
           </tr>
         </table>
+
       </div>
     </div>
   </div>
