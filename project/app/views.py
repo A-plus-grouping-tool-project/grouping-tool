@@ -8,7 +8,7 @@ def mainPage(request):
 
 def query(request):
     contents = requests.get('http://localhost:8000/api/v2/users/2',
-                            headers={'Authorization': f'Token {API_TOKEN}'})
+                            headers={'Authorization': f('Token {API_TOKEN}')})
     return HttpResponse(contents);
 
 def teacherView(request):
