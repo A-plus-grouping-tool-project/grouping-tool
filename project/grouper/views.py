@@ -15,16 +15,19 @@ def group_students(request):
     groups = []
     group = []
     j = 0
+    group_id = 1
     groups_as_text = ''
     #grouping logic
     for i in range(data['count']):
         student_object = data['results'][i]
+        student_object.update({'group':group_id})
         if j < size:
             group.append(student_object)
             j += 1
         else:
             groups.append(group)
             group = [student_object]
+            group_id += 1
             j = 1
     if (len(group) != 0):
         groups.append(group)
