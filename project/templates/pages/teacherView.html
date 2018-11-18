@@ -3,59 +3,59 @@
 {% bootstrap_css %}
 
 <html lang="en">
-<head>
-  <title>Teacher view</title>
-  <link rel="stylesheet" href="{% static 'css/teacherView.css' %}">
-</head>
-<body>
-  <div id="header">
-    <h1 id="mainTitle">A+ Grouping Tool</h1>
-    <div id="userIcon">
-      <span class="glyphicon glyphicon-user"></span>
-    </div>
-
-    <div id="logout">
-      <button class="btn">
-        <span class="glyphicon glyphicon-log-out"></span>
-        Logout
-      </button>
-    </div>
-
-  </div>
-  <div class="container-fluid">
-    <div class="row">
-      <div id="sideBar" class="col-sm-3">
-        <p>Menu</p>
+  <head>
+    <title>Teacher view</title>
+    <link rel="stylesheet" href="{% static 'css/teacherView.css' %}">
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="mainTitle">A+ Grouping Tool</h1>
+      <div id="userIcon">
+        <span class="glyphicon glyphicon-user"></span>
       </div>
-      <div id="mainContent" class="col-sm-9">
-        <p id="path">Main Page/Course 1</p>
-        <h2 id="courseName">Course 1</h2>
 
-        <div id="controls">
-          <button class="btn" id="addGroup">New Group</button>
-          <button class="btn" id="autoGroup">Create Groups Automatically</button>
-          <button class="btn" id="groupSettings">Group Settings</button>
+      <div id="logout">
+        <button class="btn">
+          <span class="glyphicon glyphicon-log-out"></span>
+          Logout
+        </button>
+      </div>
+
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div id="sideBar" class="col-sm-3">
+          <p>Menu</p>
         </div>
+        <div id="mainContent" class="col-sm-9">
+          <p id="path">Main Page/Course 1</p>
+          <h2 id="courseName">Course 1</h2>
 
-        <h2 id="groupTitle">Groups</h2>
+          <div id="controls">
+            <button class="btn" id="addGroup">New Group</button>
+            <button class="btn" id="autoGroup">Create Groups Automatically</button>
+            <button class="btn" id="groupSettings">Group Settings</button>
+          </div>
 
-        <table id="groups" class="table-striped">
-          <tr>
-            <th id="groupName">Name</th>
-            <th id="groupMembers">Members</th>
-            <th id="groupType">Type</th>
-            <th id="editGroup"></th>
-          </tr>
-          <tr>
-            <td>Test</td>
-            <td>Test</td>
-            <td>Test</td>
-            <td><button id="editGroupBtn" class="btn">Edit</button></td>
-          </tr>
-        </table>
+          <h2 id="groupTitle">Groups</h2>
 
+          <table id="groups" class="table-striped">
+            <tr>
+              <th id="groupName">Name</th>
+              <th id="groupMembers">Members</th>
+              <th id="groupType">Type</th>
+              <th id="editGroup"></th>
+            </tr>
+            <tr>
+              <td>Test</td>
+              <td>Test</td>
+              <td>Test</td>
+              <td><button id="editGroupBtn" class="btn">Edit</button></td>
+            </tr>
+          </table>
+
+        </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
