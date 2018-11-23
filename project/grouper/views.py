@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import json
 from apirequests import views
+from . import csv_maker
 
 def group_students(request):
     #define group size
@@ -12,31 +13,19 @@ def group_students(request):
     #using Python's json library to extract the content
     data = json.loads(resp.content)
     #some assisting variables
-    groups = []
-    group = []
     j = 0
     group_id = 1
-    groups_as_text = ''
     #grouping logic
     for i in range(data['count']):
-        student_object = data['results'][i]
-        student_object.update({'group':group_id})
-        if j < size:
-            group.append(student_object)
-            j += 1
+        if(i == 0):
+            csv_maker.create_csv()
         else:
-            groups.append(group)
-            group = [student_object]
-            group_id += 1
-            j = 1
-    if (len(group) != 0):
-        groups.append(group)
-    #builds a string representation of the data
-    for i in range(len(groups)):
-        if i == 0:
-            groups_as_text += ('group '+ str(i+1) +':')
-        else:
-            groups_as_text += ('\ngroup '+ str(i+1) +':')
-        for j in groups[i]:
-            groups_as_text += '\n' +str(j)
-    return HttpResponse(groups_as_text, content_type='text/plain')
+            student_object = data['results'][i]
+            student_object.update({'group_id':group_id}) #student is linked to group with group-key
+            csv_maker.export_to_csv(student_object)
+            if j < size:
+                j += 1
+            else:
+                group_id += 1
+                j = 1
+    return HttpResponse('check your project-folder for groups.csv')
