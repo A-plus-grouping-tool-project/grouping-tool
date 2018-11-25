@@ -32,9 +32,15 @@
           <h2 id="courseName">Course 1</h2>
 
           <div id="controls">
-            <button class="btn" id="addGroup">New Group</button>
-            <button class="btn" id="autoGroup">Create Groups Automatically</button>
-            <button class="btn" id="groupSettings">Group Settings</button>
+            <button class="btn" id="addGroup">
+              New Group
+            </button>
+            <button class="btn" id="autoGroup" data-toggle="modal" data-target="#autoModal">
+              Create Groups Automatically
+            </button>
+            <button class="btn" id="groupSettings">
+              Group Settings
+            </button>
           </div>
 
           <h2 id="groupTitle">Groups</h2>
@@ -57,5 +63,15 @@
         </div>
       </div>
     </div>
+    {% include "./modals/autoGroupModal.html" %}
+
+    <!-- Get jQuery and bootstrap.js from CDN -->
+    <script
+     src="https://code.jquery.com/jquery-3.3.1.min.js"
+     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+     crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Logic for modal dialog -->
+    <script src="{% static 'js/autoGroupModal.js' %}"></script>
   </body>
 </html>
