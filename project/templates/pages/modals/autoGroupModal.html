@@ -1,0 +1,37 @@
+
+<div class="modal fade" id="autoModal" tabindex="-1" role="dialog" aria-labelledby="autoGroupModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="autoGroupModal">Luo ryhmät automaattisesti</h4>
+        </div>
+        <div class="modal-body">
+          <p>Lajittelutapa:</p>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <span id="chosenItem">Satunnainen</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li>
+                <a class="menuItem" href="#">Satunnainen</a>
+              </li>
+              <li>
+                <a class="menuItem" href="#">Tapa 2</a>
+              </li>
+              <li>
+                <a class="menuItem" href="#">Tapa 3</a>
+              </li>
+            </ul>
+          </div>
+          <br/>
+          <p>Ryhmäkoko:</p>
+          <input id="size" name="groupSize" type="number" min="1"/>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal">Sulje</button>
+          <button class="btn" data-dismiss="modal" onclick="createGroups()">Luo ryhmät</button>
+        </div>
+      </div>
+    </div>
+  </div>
