@@ -59,3 +59,17 @@ th {
 #groupMembers {
   width: 40%;
 }
+
+input[type="number"] {
+  height: 30px;
+  width: 50px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border: 1px solid rgb(130, 130, 130);
+  border-radius: 4px;
+}

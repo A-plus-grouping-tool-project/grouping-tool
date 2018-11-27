@@ -3,12 +3,16 @@
 {% bootstrap_css %}
 
 <html lang="en">
+
   <head>
     <title>Teacher view</title>
     <link rel="stylesheet" href="{% static 'css/teacherView.css' %}">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+    <!-- Get jQuery and bootstrap.js from CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
+
   <body>
     <div id="header">
       <h1 id="mainTitle">A+ Grouping Tool</h1>
@@ -34,15 +38,16 @@
           <h2 id="courseName">Course 1</h2>
 
           <div id="controls">
-            <button class="btn" id="addGroup">
+            <button class="btn" id="addGroupBtn">
               New Group
             </button>
-            <button class="btn" id="autoGroup" data-toggle="modal" data-target="#autoModal">
+            <button class="btn" id="autoGroupBtn" data-toggle="modal" data-target="#autoModal">
               Create Groups Automatically
             </button>
-            <button class="btn" id="groupSettings" data-toggle="modal" data-target="#group_settings" >Group Settings</button>
+            <button class="btn" id="groupSettingsBtn" data-toggle="modal" data-target="#groupSettings">
+              Group Settings
+            </button>
           </div>
-
 
           <h2 id="groupTitle">Groups</h2>
 
@@ -64,17 +69,12 @@
         </div>
       </div>
     </div>
-    {% include "./modals/autoGroupModal.html" %}
 
-    <!-- Get jQuery and bootstrap.js from CDN -->
-    <script
-     src="https://code.jquery.com/jquery-3.3.1.min.js"
-     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-     crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    {% include "./modals/autoGroupModal.html" %}
+    {% include "./modals/settingsView.html" %}
     <!-- Logic for modal dialog -->
     <script src="{% static 'js/autoGroupModal.js' %}"></script>
-  {%include "./settingsView.html" %}
-  <script src="{% static 'js/settingsView.js' %}"></script>
+
   </body>
+
 </html>
