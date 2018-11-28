@@ -53,7 +53,14 @@
           </div>
 
           <h2 id="groupTitle">Groups</h2>
-
+          {% block content %}
+          <!-- Modal -->
+          <div class="modal fade" style="" id="editGroupModal" tabindex="-1" role="dialog" aria-labelby="editGroupModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+              </div>
+            </div>
+          </div><!-- /.modal -->
           <table id="groups" class="table-striped">
             <tr>
               <th id="groupName">Name</th>
@@ -61,14 +68,16 @@
               <th id="groupType">Type</th>
               <th id="editGroup"></th>
             </tr>
+            {% for group in object_list %}
             <tr>
-              <td>Test</td>
-              <td>Test</td>
-              <td>Test</td>
-              <td><button id="editGroupBtn" class="btn">Edit</button></td>
+              <td>{{group.name}}</td>
+              <td>{{group.students}}</td>
+              <td>{{group.type}}</td>
+              <td><button id="editGroupBtn" class="btn" data-toggle="modal" data-target="#editGroupModal" href="{% url 'edit_group' group.course_code %}">Edit</button></td>
             </tr>
+            {% endfor %}
           </table>
-
+          {% endblock %}
         </div>
       </div>
     </div>
@@ -78,6 +87,14 @@
     <!-- Logic for modal dialog -->
     <script src="{% static 'js/autoGroupModal.js' %}"></script>
 
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{% static 'js/editGroupModal.js'%}"></script>
   </body>
 
 </html>
