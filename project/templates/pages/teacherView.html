@@ -73,7 +73,7 @@
               <td>{{group.name}}</td>
               <td>{{group.students}}</td>
               <td>{{group.type}}</td>
-              <td><button id="editGroupBtn" class="btn" data-toggle="modal" data-target="#editGroupModal" href="{% url 'edit_group' group.course_code %}">Edit</button></td>
+              <td><button id="editGroupBtn" class="btn" data-toggle="modal" data-target="#editGroupModal" href="{% url 'edit_group' group.course_code %}" onclick="clearModal()">Edit</button></td>
             </tr>
             {% endfor %}
           </table>
@@ -88,6 +88,7 @@
     <script src="{% static 'js/autoGroupModal.js' %}"></script>
 
     <script src="http://malsup.github.com/jquery.form.js"></script>
+
     <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

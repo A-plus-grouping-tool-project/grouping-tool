@@ -1,0 +1,48 @@
+{% load bootstrap3 %}
+{% bootstrap_css %}
+
+<form id="editGroupForm" class="form" role="form" action="{% url 'edit_group' group.course_code %}" method="post">
+  <div class="modal-header">
+    <button type="button" class="close" name="button" data-dismiss="modal" aria-hidden="true">x</button>
+    <h4 class="modal-title" id="editGroupTitle" style="text-align:center">Edit group {{ group.name }}</h4>
+  </div>
+  <div class="modal-body">
+    {% csrf_token %}
+    <div class="fluid-container" style="overflow:hidden">
+      <div id="leftSide" class="col-sm-5">
+        <div class="form-group">
+          <h5>Students without a group</h5>
+          <div id="noGroupStudentList" style="border:solid;border-width:thin; border-color:gray">
+            <div id="1" ondblclick="moveDbl(1,1)" onclick="paintDiv(event,1)">1</div>
+            <div id="2" ondblclick="moveDbl(2,2)" onclick="paintDiv(event,2)">2</div>
+            <div id="3" ondblclick="moveDbl(3,3)" onclick="paintDiv(event,3)">3</div>
+          </div>
+        </div>
+      </div>
+      <div id="centerBtns" class="col-sm-2">
+        <button id="moveLeftBtn" type="button" name="moveLeft" onclick="moveL()">
+          <span class="glyphicon glyphicon-arrow-left"></span>
+        </button>
+        <button id="moveRightBtn" type="button" name="moveRight" onclick="moveR()">
+          <span class="glyphicon glyphicon-arrow-right"></span>
+        </button>
+      </div>
+      <div id="rightSide" class="col-sm-5">
+        <div class="form-group">
+          <h5>Selected students</h5>
+          <div id="studentList" style="border:solid;border-width:thin; border-color:gray">
+            {% for student in group.students %}
+            <div id="{{student}}" class="studentItem" ondblclick="moveDbl({{student}}, {{student}})" value="{{ student }}" onclick="paintDiv(event, {{student}})">
+              {{ student }}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input type="button" class="btn btn-default" name="cancel" value="cancel" data-dismiss="modal">
+    <input type="submit" class="btn btn-primary" name="submit" value="save">
+  </div>
+</form>
