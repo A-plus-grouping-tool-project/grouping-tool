@@ -1,0 +1,39 @@
+#containerOne {
+    overflow:auto;
+    float:left;
+    max-height:400px;
+    width:40%;
+}
+
+#containerTwo {
+    background-color:teal;
+    border: 1px solid black;
+    max-height:400px;
+    with:stretch;
+    overflow:auto;
+    float:left;
+    width:40%;
+}
+
+#mainContainer {
+
+}
+
+#buttonContainer {
+    background:yellow;
+    float:left;
+    width:20%;
+    align-items:center;
+}
+
+#headerOne {
+    float:left;
+    width:50%;
+    text-align: center;
+}
+
+#headerTwo {
+    float:left;
+    width:50%;
+    text-align: center;
+}

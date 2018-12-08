@@ -128,3 +128,4 @@ class experimental(TemplateView):
             request.session['group_size'] = group_size
             group_students(request)
         return render(request, self.template_name, args)
+
