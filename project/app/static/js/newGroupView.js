@@ -11,24 +11,27 @@ function newItem() {
 
 //update selection
 $(".list-group .list-group-item").click(function(e) {
- //   $(".list-group .list-group-item").removeClass("active");
-    $(e.target).addClass("active");
+    if ($(e.target).hasClass("active")) {
+        $(e.target).removeClass("active");
+    }
+    else {
+        $(e.target).addClass("active");
+    }
 });
 
 
 //Detach elements to another list
-$(".list-group .list-group-item").click(function(e){
+$(".list-group .list-group-item").dblclick(function(e){
     var list1 = document.getElementById("list1");
     var list2 = document.getElementById("list2");
-    var selected = this.parentNode;
 
-    if (selected.isEqualNode(list1)) {
+    if (this.parentNode === list1) {
         list2.appendChild(this);
     }
-
-    alert(this.parentNode);
-    alert(list1);
-    if (this.parentElement === list2){
+    else if  (this.parentNode === list2) {
         list1.appendChild(this);
     }
 });
+
+// TODO Make buttons work
+
