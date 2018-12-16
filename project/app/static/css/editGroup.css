@@ -1,0 +1,10 @@
+.listStyle {
+  border:solid;
+  border-width:thin;
+  border-color:gray;
+  height: 100px;
+}
+
+#editGroupTitle {
+  text-align:center
+}
