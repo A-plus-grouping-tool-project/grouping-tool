@@ -2,14 +2,16 @@
     <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Pratica {{ group.course_code }}</h4>
+                <h4 class="modal-title" id="myModalLabel">Success</h4>
               </div>
               <div class="modal-body">
-                  <p>Fuck yeah!</p>
+                  <p>Changes to group {{ group.course_code }} saved!</p>
                   <script>
                     setTimeout(function() { jQuery('#editGroupModal').modal('hide'); }, 1000);
                     $('body').on('hidden.bs.modal', '.modal', function () {
                         $(this).removeData('bs.modal');
+                        window.location.reload(true);
+                        console.log('Save success!');
                     });
                   </script>
               </div>

@@ -5,7 +5,9 @@ from django.shortcuts import render
 from .models import Group
 from .forms import EditGroupForm
 from django.views.generic import ListView, UpdateView
+from django.template.loader import render_to_string
 
+import sys
 import logging
 
 def mainPage(request):
@@ -31,12 +33,13 @@ class edit_group(UpdateView):
 
     def dispatch(self, *args, **kwargs):
         self.course_code = kwargs['pk']
+        logger = logging.getLogger()
+        logger.info('heellp')
         return super(edit_group, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
         logger = logging.getLogger()
-        logger.info(form)
         form.save()
-        group = Group.objects.get(course_code=self.course_code)
-        logger.info(group)
-        return HttpResponse(render_to_string('pages/teacherView', {'group' : group}))
+        item = Group.objects.get(id=self.course_code)
+        logger.info(item)
+        return HttpResponse(render_to_string('pages/modals/editGroupDialogSuccess.html', {'group': item}))
