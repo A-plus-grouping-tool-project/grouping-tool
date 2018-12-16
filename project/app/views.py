@@ -27,19 +27,14 @@ class teacherView(ListView):
 
 class edit_group(UpdateView):
     model = Group
-    context_object_name = 'group'
     form_class = EditGroupForm
     template_name = 'pages/modals/editGroupDialog.html'
 
     def dispatch(self, *args, **kwargs):
         self.course_code = kwargs['pk']
-        logger = logging.getLogger()
-        logger.info('heellp')
         return super(edit_group, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
-        logger = logging.getLogger()
         form.save()
         item = Group.objects.get(id=self.course_code)
-        logger.info(item)
         return HttpResponse(render_to_string('pages/modals/editGroupDialogSuccess.html', {'group': item}))
