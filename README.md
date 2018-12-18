@@ -39,10 +39,10 @@ A tool for managing groups in A+
     `python3 manage.py shell`
 
 3. Import your model
-    ex. `from app.models import Test`
+    ex. `from app.models import Group`
 
 4. Create model object
-    ex. `test = Test("test", id 1)`
+    ex. `group = Group("test name", 1, "test code", "test type", [1,2,3])`
 
 5. Save object
-    ex. `test.save()`
+    ex. `group.save()`
