@@ -19,22 +19,21 @@
           <div id="containerOne" class="container-fluid">
             <ul id="list1" class="list-group">
               <li class="list-group-item">testi</li>
-              {% for student in students %}
-              <li class="list-group-item"> {{students.student}} </li>
+              {% for student in group.students %}
+              <li class="list-group-item"> {{student}} </li>
               {% endfor %}
             </ul>
 
           </div>
           <div class="container-fluid" id="buttonContainer">
             <button id="addButton" class="btn btn-md btn-block">Add</button>
-            <button class="btn btm-md btn-block">Remove</button>
+            <button id="removeButton" class ="btn btm-md btn-block">Remove</button>
           </div>
           <div id="containerTwo" class="container-fluid">
             <ul class="list-group" id="list2">
               <li class="list-group-item">testi</li>
               <li class="list-group-item">testi2</li>
               <li class="list-group-item">testi3</li>
-
             </ul>
           </div>
         </div>

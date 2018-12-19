@@ -129,3 +129,8 @@ class experimental(TemplateView):
             group_students(request)
         return render(request, self.template_name, args)
 
+def newGroupView(request):
+    def get(self,request):
+        students = Student.objects.all()
+        args = {'Student': students}
+        return render(request, 'self.newGroupView.html', args)
