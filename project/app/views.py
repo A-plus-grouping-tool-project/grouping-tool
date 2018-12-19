@@ -7,8 +7,6 @@ from .forms import EditGroupForm
 from django.views.generic import ListView, UpdateView
 from django.template.loader import render_to_string
 
-import sys
-import logging
 
 def mainPage(request):
     return HttpResponse("Hello, world. You're at the app main page.")
@@ -30,11 +28,15 @@ class edit_group(UpdateView):
     form_class = EditGroupForm
     template_name = 'pages/modals/editGroupDialog.html'
 
+    #Add group_code to the request
     def dispatch(self, *args, **kwargs):
         self.course_code = kwargs['pk']
         return super(edit_group, self).dispatch(*args, **kwargs)
 
+    #Do if form is valid
     def form_valid(self, form):
         form.save()
         item = Group.objects.get(id=self.course_code)
+        #Call the success dialog
         return HttpResponse(render_to_string('pages/modals/editGroupDialogSuccess.html', {'group': item}))
+        
