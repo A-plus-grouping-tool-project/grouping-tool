@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^grouper/', include('grouper.urls')),
     url(r'^app/', include('app.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^auth/', include('django_lti_login.urls'))
 ]

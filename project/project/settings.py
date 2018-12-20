@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
+    'django_lti_login',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +89,10 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+    'django_lti_login.backends.LTIAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -106,6 +111,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_LTI_LOGIN = {
+    'ACCEPTED_ROLES': None, #allow with any role
+    'STAFF_ROLES': ['Instructor'],
+}
 
 
 # Internationalization
