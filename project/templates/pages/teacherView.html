@@ -72,10 +72,14 @@
             </tr>
             {% for group in object_list %}
             <tr>
-              <td>{{group.name}}</td>
-              <td>{{group.students}}</td>
-              <td>{{group.type}}</td>
-              <td><button id="editGroupBtn" class="btn" data-toggle="modal" data-target="#editGroupModal" href="{% url 'edit_group' group.course_code %}">Edit</button></td>
+              <td>{{group.group_id}}</td>
+              <td>
+                {% for student in group.students.all %}
+                {{student.username}}
+                {% endfor %}
+              </td>
+              <td>{{group.group_type}}</td>
+              <td><button id="editGroupBtn" class="btn" data-toggle="modal" data-target="#editGroupModal" href="{% url 'edit_group' group.id %}">Edit</button></td>
             </tr>
             {% endfor %}
           </table>

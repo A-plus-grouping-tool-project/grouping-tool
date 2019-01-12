@@ -2,7 +2,8 @@ from django.http import HttpResponse
 from project.credentials import API_TOKEN
 import requests
 from django.shortcuts import render
-from .models import Group
+from app.models import Group
+from app.models import Student
 from .forms import EditGroupForm
 from django.views.generic import ListView, UpdateView
 from django.template.loader import render_to_string
@@ -28,15 +29,20 @@ class edit_group(UpdateView):
     form_class = EditGroupForm
     template_name = 'pages/modals/editGroupDialog.html'
 
-    #Add group_code to the request
+    #add students without a group to modals data
+    def get_context_data(self, **kwargs):
+        context = super(edit_group, self).get_context_data(**kwargs)
+        context['studentsWithoutGroup'] = Student.objects.all()
+        return context
+
+    #Add group_id to the request
     def dispatch(self, *args, **kwargs):
-        self.course_code = kwargs['pk']
+        self.id = kwargs['pk']
         return super(edit_group, self).dispatch(*args, **kwargs)
 
     #Do if form is valid
     def form_valid(self, form):
         form.save()
-        item = Group.objects.get(id=self.course_code)
+        item = Group.objects.get(id=self.id)
         #Call the success dialog
         return HttpResponse(render_to_string('pages/modals/editGroupDialogSuccess.html', {'group': item}))
-        
