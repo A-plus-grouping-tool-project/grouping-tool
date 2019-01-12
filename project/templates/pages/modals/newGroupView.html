@@ -18,9 +18,8 @@
         <div class="container-fluid" id="mainContainer">
           <div id="containerOne" class="container-fluid">
             <ul id="list1" class="list-group">
-              <li class="list-group-item">testi</li>
-              {% for student in group.students %}
-              <li class="list-group-item"> {{student}} </li>
+              {% for student in students %}
+                <li class="list-group-item"> {{student.name}} </li>
               {% endfor %}
             </ul>
 

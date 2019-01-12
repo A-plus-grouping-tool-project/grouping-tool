@@ -12,6 +12,7 @@ from django.template.loader import render_to_string
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
+from .forms import newGroupForm
 
 def mainPage(request):
     return HttpResponse("Hello, world. You're at the app main page.")
@@ -130,7 +131,12 @@ class experimental(TemplateView):
         return render(request, self.template_name, args)
 
 def newGroupView(request):
+
     def get(self,request):
         students = Student.objects.all()
-        args = {'Student': students}
-        return render(request, 'self.newGroupView.html', args)
+        return render(request, 'self.newGroupView.html', {'students': students})
+
+    def post(self,request):
+        form = newGroupForm(request.POST)
+
+        return render(request, self.template_name)

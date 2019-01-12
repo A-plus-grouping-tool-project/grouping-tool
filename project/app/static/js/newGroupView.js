@@ -40,11 +40,12 @@ $("#addButton").click(function(e) {
     var list = document.getElementById("list1");
     var list2 = document.getElementById("list2");
     var num = list.getElementsByTagName("li");
-    alert(num.length);
     for (var i=0; i <= num.length; i++) {
         if ($(num[i]).hasClass("active")) {
             $(num[i]).removeClass("active");
             list2.appendChild(num[i]);
+            alert("löytyi");
+            alert(num.length);
         }
     }
 });
@@ -55,12 +56,14 @@ $("#removeButton").click(function(e) {
     var list2 = document.getElementById("list2");
     var num = list2.getElementsByTagName("li");
     for (var i=0; i <= num.length; i++) {
-        alert(num[i]);
         if ($(num[i]).hasClass("active")) {
             $(num[i]).removeClass("active");
             list1.appendChild(num[i]);
+            i = 0;
         }
     }
 });
+
+
 
 
