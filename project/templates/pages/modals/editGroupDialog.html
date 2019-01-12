@@ -2,22 +2,29 @@
 {% bootstrap_css %}
 
 <!--Uses ajax to send data from dialog with form to the django model-->
-<form id="editGroupForm" class="form" role="form" action="{% url 'edit_group' group.course_code %}" method="post">
+<form id="editGroupForm" class="form" role="form" action="{% url 'edit_group' group.id %}" method="post">
   <div class="modal-header">
     <button type="button" class="close" name="button" data-dismiss="modal" aria-hidden="true">x</button>
-    <h4 class="modal-title" id="editGroupTitle">Edit group {{ group.name }}</h4>
+    <h4 class="modal-title" id="editGroupTitle">Edit group {{ group.course_code }}</h4>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" onload="script();">
     {% csrf_token %}
     <div class="fluid-container" style="overflow:hidden">
       <div id="leftSide" class="col-sm-5">
         <div class="form-group">
           <h5>Students without a group</h5>
-          <div id="noGroupStudentList" class="listStyle">
-            <div id="1" ondblclick="moveStudentDoubleClick(1,1)" onclick="paintDiv(event,1)">1</div>
-            <div id="2" ondblclick="moveStudentDoubleClick(2,2)" onclick="paintDiv(event,2)">2</div>
-            <div id="3" ondblclick="moveStudentDoubleClick(3,3)" onclick="paintDiv(event,3)">3</div>
-          </div>
+          <select id="noGroupStudentList" multiple="" >
+            {% for student in studentsWithoutGroup %}
+            <option id="{{student.id}}" class="StudentWithoutItem" value="{{student.id}}" ondblclick="moveStudentDoubleClick(event,this)">{{student.id}}/{{student.username}}</option>
+            {% endfor %}
+          </select>
+          <!--div id="noGroupStudentList" class="listStyle">
+            {% for student in studentsWithoutGroup %}
+            <div id="{{student.id}}" ondblclick="moveStudentDoubleClick({{student.id}})" value="{{student}}" onclick="paintDiv(event,{{student.id}})">
+              {{ student.id }}/{{ student.username }}
+            </div>
+            {% endfor %}
+          </div-->
         </div>
       </div>
       <div id="centerBtns" class="col-sm-2">
@@ -31,20 +38,20 @@
       <div id="rightSide" class="col-sm-5">
         <div class="form-group">
           <h5>Selected students</h5>
-          <div id="studentList" class="listStyle">
-            {% for student in group.students %}
-            <div id="{{student}}" class="studentItem" ondblclick="moveStudentDoubleClick({{student}}, {{student}})" value="{{ student }}" onclick="paintDiv(event, {{student}})">
-              {{ student }}
-            </div>
+          <select id="studentList" multiple="" >
+            {% for student in group.students.all %}
+            <option id="{{student.id}}" class="studentItem" ondblclick="moveStudentDoubleClick(event,this)" value="{{student.id}}">
+              {{ student.id }}/{{ student.username }}
+            </option>
             {% endfor %}
-          </div>
+          </select>
         </div>
       </div>
     </div>
     {{ form.non_field_errors }}
     <!--hidden input field for student list. Form sends data from this input.-->
-    <div class="form-group" id="formStudents" style="display:none">
-      {{form.students}}"
+    <div class="form-group" id="formStudents" style="">
+      {{form.students}}
     </div>
   <div class="modal-footer">
     <input type="button" class="btn btn-default" name="cancel" value="cancel" data-dismiss="modal">
