@@ -32,7 +32,9 @@ class edit_group(UpdateView):
     #add students without a group to modals data
     def get_context_data(self, **kwargs):
         context = super(edit_group, self).get_context_data(**kwargs)
-        context['studentsWithoutGroup'] = Student.objects.all()
+        allStudents = Student.objects.all()
+        groupStudents = Group.objects.get(id=self.id).students.all()
+        context['studentsWithoutGroup'] = set(allStudents).difference(set(groupStudents))
         return context
 
     #Add group_id to the request
