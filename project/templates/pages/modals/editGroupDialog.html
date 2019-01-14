@@ -18,13 +18,6 @@
             <option id="{{student.id}}" class="StudentWithoutItem" value="{{student.id}}" ondblclick="moveStudentDoubleClick(event,this)">{{student.id}}/{{student.username}}</option>
             {% endfor %}
           </select>
-          <!--div id="noGroupStudentList" class="listStyle">
-            {% for student in studentsWithoutGroup %}
-            <div id="{{student.id}}" ondblclick="moveStudentDoubleClick({{student.id}})" value="{{student}}" onclick="paintDiv(event,{{student.id}})">
-              {{ student.id }}/{{ student.username }}
-            </div>
-            {% endfor %}
-          </div-->
         </div>
       </div>
       <div id="centerBtns" class="col-sm-2">
@@ -50,7 +43,7 @@
     </div>
     {{ form.non_field_errors }}
     <!--hidden input field for student list. Form sends data from this input.-->
-    <div class="form-group" id="formStudents" style="">
+    <div class="form-group" id="formStudents" style="display: none">
       {{form.students}}
     </div>
   <div class="modal-footer">
