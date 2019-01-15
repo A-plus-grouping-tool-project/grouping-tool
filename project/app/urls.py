@@ -1,8 +1,8 @@
 from django.conf.urls import url
 
 from . import views
-from ..apirequests import views as apiviews
-from ..grouper import views as groupviews
+from apirequests import views as apiviews
+from grouper import views as groupviews
 
 urlpatterns = [
     url(r'^$', views.mainPage, name='mainPage'),
