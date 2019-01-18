@@ -1,18 +1,18 @@
 //remove student/students from group
 function moveL() {
   //group students in form input
-  var students = document.getElementById('id_students');
+  let students = document.getElementById('id_students');
   //group's student list
-  var studentList = document.getElementById('studentList');
+  let studentList = document.getElementById('studentList');
   //groupless student list
-  var studentsWithoutGroup = document.getElementById('noGroupStudentList');
+  let studentsWithoutGroup = document.getElementById('noGroupStudentList');
   //get selected students' ids
-  var selectedStudents = getSelectValues(studentList);
+  let selectedStudents = getSelectValues(studentList);
   //unselect selected students in form select as well
   selectedStudents.forEach(function (selectedStudent) {
-    var theOption;
-    for (var i = 0; i < students.options.length; i++){
-      var option = students.options[i];
+    let theOption;
+    for (let i = 0; i < students.options.length; i++){
+      let option = students.options[i];
       if (option.value == selectedStudent.id){
         theOption = option.index;
       }
@@ -24,10 +24,10 @@ function moveL() {
 
 //returns selected students' ids
 function getSelectValues(select) {
-  var result = [];
-  var options = select.options;
-  var opt;
-  for (var i=0, iLen=options.length; i<iLen; i++) {
+  let result = [];
+  const options = select.options;
+  const opt;
+  for (let i=0, iLen=options.length; i<iLen; i++) {
     opt = options[i];
     if (opt.selected) {
       result.push(opt);
@@ -39,18 +39,18 @@ function getSelectValues(select) {
 //add student/students to group
 function moveR() {
   //group students in form input
-  var students = document.getElementById('id_students');
+  let students = document.getElementById('id_students');
   //group's student list
-  var studentList = document.getElementById('studentList');
+  let studentList = document.getElementById('studentList');
   //groupless student list
-  var studentsWithoutGroup = document.getElementById('noGroupStudentList');
+  let studentsWithoutGroup = document.getElementById('noGroupStudentList');
   //get selected students' ids
-  var selectedStudents = getSelectValues(studentsWithoutGroup);
+  let selectedStudents = getSelectValues(studentsWithoutGroup);
   //select selected students in form select as well
   selectedStudents.forEach(function (selectedStudent) {
-    var theOption;
-    for (var i = 0; i < students.options.length; i++){
-      var option = students.options[i];
+    let theOption;
+    for (let i = 0; i < students.options.length; i++){
+      const option = students.options[i];
       if (option.value == selectedStudent.id){
         theOption = option.index;
       }
@@ -63,18 +63,18 @@ function moveR() {
 //remove or add student/students to group by doubleclick
 function moveStudentDoubleClick(e, element) {
   //group students in form input
-  var students = document.getElementById('id_students');
+  let students = document.getElementById('id_students');
   //groupless student list and group's student list
-  var noGroupStudentList = document.getElementById('noGroupStudentList');
-  var studentList = document.getElementById('studentList');
+  let noGroupStudentList = document.getElementById('noGroupStudentList');
+  let studentList = document.getElementById('studentList');
   //if student is in group's student list
   //else if student is in groupless student list
   if(element.parentNode == studentList){
     element.parentNode.removeChild(element);
     //remove student from form's input value
-    var theOption;
-    for (var i = 0; i < students.options.length; i++){
-      var option = students.options[i];
+    let theOption;
+    for (let i = 0; i < students.options.length; i++){
+      const option = students.options[i];
       if (option.value == e.target.id){
         theOption = option.index;
       }
@@ -88,9 +88,9 @@ function moveStudentDoubleClick(e, element) {
     element.parentNode.removeChild(element);
     studentList.appendChild(element);
     //add student to form's input value
-    var theOption;
-    for (var i = 0; i < students.options.length; i++){
-      var option = students.options[i];
+    let theOption;
+    for (let i = 0; i < students.options.length; i++){
+      const option = students.options[i];
       if (option.value == e.target.id){
         theOption = option.index;
       }

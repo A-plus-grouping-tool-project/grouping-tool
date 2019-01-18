@@ -5,7 +5,7 @@ FIELD_NAMES = ['group_id', 'id', 'username', 'student_id', 'email']
 def create_csv(filename = 'groups'):
     try:
         #group, id, name, student_id, email
-        with open(f'{filename}.csv', 'w') as groupsfile:
+        with open(f('{filename}.csv'), 'w') as groupsfile:
             group_writer = csv.DictWriter(groupsfile,fieldnames=FIELD_NAMES)
             group_writer.writeheader()
     except IOError:
@@ -14,7 +14,7 @@ def create_csv(filename = 'groups'):
 def export_to_csv(student_object, filename = 'groups'):
     try:
         #group, id, name, student_id, email
-        with open(f'{filename}.csv', 'a') as groupsfile:
+        with open(f('{filename}.csv'), 'a') as groupsfile:
             group_writer = csv.DictWriter(groupsfile,fieldnames=FIELD_NAMES)
             student_object = format_student_data(student_object)
             group_writer.writerow(student_object)
