@@ -15,7 +15,13 @@
           <h5>Students without a group</h5>
           <select id="noGroupStudentList" multiple="" >
             {% for student in studentsWithoutGroup %}
-            <option id="{{student.id}}" class="StudentWithoutItem" value="{{student.id}}" ondblclick="moveStudentDoubleClick(event,this)">{{student.id}}/{{student.username}}</option>
+            <option
+              id="{{student.id}}"
+              class="StudentWithoutItem"
+              value="{{student.id}}"
+              ondblclick="moveStudentDoubleClick(event,this)">
+              {{student.id}}/{{student.username}}
+            </option>
             {% endfor %}
           </select>
         </div>
@@ -33,7 +39,11 @@
           <h5>Selected students</h5>
           <select id="studentList" multiple="" >
             {% for student in group.students.all %}
-            <option id="{{student.id}}" class="studentItem" ondblclick="moveStudentDoubleClick(event,this)" value="{{student.id}}">
+            <option
+              id="{{student.id}}"
+              class="studentItem"
+              ondblclick="moveStudentDoubleClick(event,this)"
+              value="{{student.id}}">
               {{ student.id }}/{{ student.username }}
             </option>
             {% endfor %}
@@ -51,7 +61,7 @@
     <input type="submit" class="btn btn-primary" name="submit" value="save">
   </div>
   <script>
-    var form_options = {
+    let form_options = {
         target: '#editGroupModal',
         success: function() {}
     }

@@ -57,7 +57,14 @@
           <h2 id="groupTitle">Groups</h2>
           {% block content %}
           <!-- Modal -->
-          <div class="modal fade" style="" id="editGroupModal" tabindex="-1" role="dialog" aria-labelby="editGroupModal" aria-hidden="true">
+          <div
+            class="modal fade"
+            style=""
+            id="editGroupModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelby="editGroupModal"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
               </div>
@@ -79,7 +86,16 @@
                 {% endfor %}
               </td>
               <td>{{group.group_type}}</td>
-              <td><button id="editGroupBtn" class="btn" data-toggle="modal" data-target="#editGroupModal" href="{% url 'edit_group' group.id %}">Edit</button></td>
+              <td>
+                <button
+                  id="editGroupBtn"
+                  class="btn"
+                  data-toggle="modal"
+                  data-target="#editGroupModal"
+                  href="{% url 'edit_group' group.id %}">
+                  Edit
+                </button>
+              </td>
             </tr>
             {% endfor %}
           </table>
@@ -104,5 +120,4 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{% static 'js/editGroupModal.js'%}"></script>
   </body>
-
 </html>
