@@ -33,7 +33,13 @@ class edit_group(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(edit_group, self).get_context_data(**kwargs)
         allStudents = Student.objects.all()
-        groupStudents = Group.objects.get(id=self.id).students.all()
+        allGroupIds = Group.objects.values('id')
+        #get students which are in some group
+        groupStudents = []
+        for id in allGroupIds:
+            help = Group.objects.get(id=id.get('id')).students.all()
+            groupStudents.extend(help)
+        #get students without a group
         context['studentsWithoutGroup'] = set(allStudents).difference(set(groupStudents))
         return context
 
