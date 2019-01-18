@@ -25,8 +25,8 @@ function moveL() {
 //returns selected students' ids
 function getSelectValues(select) {
   let result = [];
-  const options = select.options;
-  const opt;
+  let options = select.options;
+  let opt;
   for (let i=0, iLen=options.length; i<iLen; i++) {
     opt = options[i];
     if (opt.selected) {
@@ -50,7 +50,7 @@ function moveR() {
   selectedStudents.forEach(function (selectedStudent) {
     let theOption;
     for (let i = 0; i < students.options.length; i++){
-      const option = students.options[i];
+      let option = students.options[i];
       if (option.value == selectedStudent.id){
         theOption = option.index;
       }
@@ -74,7 +74,7 @@ function moveStudentDoubleClick(e, element) {
     //remove student from form's input value
     let theOption;
     for (let i = 0; i < students.options.length; i++){
-      const option = students.options[i];
+      let option = students.options[i];
       if (option.value == e.target.id){
         theOption = option.index;
       }
@@ -90,7 +90,7 @@ function moveStudentDoubleClick(e, element) {
     //add student to form's input value
     let theOption;
     for (let i = 0; i < students.options.length; i++){
-      const option = students.options[i];
+      let option = students.options[i];
       if (option.value == e.target.id){
         theOption = option.index;
       }
