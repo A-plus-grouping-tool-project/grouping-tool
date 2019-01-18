@@ -20,10 +20,6 @@ function moveL() {
     students.options[theOption].selected = false;
     studentsWithoutGroup.add(selectedStudent);
   });
-  //remove students from selected student list
-  selectedStudents.forEach(function (selectedStudent) {
-    studentList.remove(selectedStudent.index);
-  })
 };
 
 //returns selected students' ids
@@ -62,10 +58,6 @@ function moveR() {
     students.options[theOption].selected = true;
     studentList.add(selectedStudent);
   });
-  //remove student from groupless students
-  selectedStudents.forEach(function (selectedStudent) {
-    studentsWithoutGroup.remove(selectedStudent.index);
-  })
 };
 
 //remove or add student/students to group by doubleclick
