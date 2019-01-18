@@ -22,7 +22,7 @@ class teacherView(ListView):
     template_name = 'pages/teacherView.html'
 
     def get_queryset(self):
-        return Group.objects.all()
+        return Group.objects.all().order_by('group_id')
 
 class edit_group(UpdateView):
     model = Group
