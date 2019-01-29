@@ -20,6 +20,9 @@ class Student(models.Model):
         return f'%s{SEP} %s{SEP} %s{SEP} %s' % \
             (self.student_id, self.username, self.student_no, self.email)
 
+    def __unicode__(self):
+        return str(self.username)
+
 class Group(models.Model):
     group_id = models.IntegerField(default=0)
     course = models.ForeignKey(
