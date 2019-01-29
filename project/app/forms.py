@@ -12,8 +12,6 @@ class ExperimentalForm(forms.Form):
     delete_rows = forms.BooleanField(required=False)
 
 class newGroupForm(forms.ModelForm):
-    group_name = forms.CharField(label="Group name", max_length=100)
-
     class Meta:
         model = Group
-        fields = ('name',)
+        fields = ('students',)

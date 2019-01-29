@@ -44,8 +44,6 @@ $("#addButton").click(function(e) {
         if ($(num[i]).hasClass("active")) {
             $(num[i]).removeClass("active");
             list2.appendChild(num[i]);
-            alert("löytyi");
-            alert(num.length);
         }
     }
 });

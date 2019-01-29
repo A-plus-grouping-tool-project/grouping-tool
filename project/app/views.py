@@ -4,7 +4,7 @@ import requests
 from django.shortcuts import render
 from app.models import Group
 from app.models import Student
-from .forms import EditGroupForm, ExperimentalForm
+from .forms import EditGroupForm, ExperimentalForm, newGroupForm
 from . import grouper, courses, students
 from . import csv_maker
 from django.views.generic import ListView, UpdateView, TemplateView
@@ -130,13 +130,21 @@ class experimental(TemplateView):
             group_students(request)
         return render(request, self.template_name, args)
 
-def newGroupView(request):
+class new_group(TemplateView):
+    model = Group
+    template_name = 'pages/modals/newGroupView.html'
 
-    def get(self,request):
-        students = Student.objects.all()
-        return render(request, 'self.newGroupView.html', {'students': students})
-
-    def post(self,request):
-        form = newGroupForm(request.POST)
-
-        return render(request, self.template_name)
+    def get(self, request):
+        form = newGroupForm
+        allStudents = Student.objects.all()
+        allGroupIds = Group.objects.values('id')
+        #get students which are in some group
+        groupStudents = []
+        for id in allGroupIds:
+            help = Group.objects.get(id=id.get('id')).students.all()
+            groupStudents.extend(help)
+        #get students without a group
+        data = set(allStudents).difference(set(groupStudents))
+        args = {'studentsWihtoutgroup': data, 'form': form}
+        print(data)
+        return render(request, self.template_name, args)
