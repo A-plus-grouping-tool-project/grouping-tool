@@ -130,14 +130,15 @@ class experimental(TemplateView):
             group_students(request)
         return render(request, self.template_name, args)
 
-class new_group(TemplateView):
+class new_group(UpdateView):
     model = Group
     template_name = 'pages/modals/newGroupView.html'
+    form_class = newGroupForm
 
     def get(self, request):
-        form = newGroupForm
         allStudents = Student.objects.all()
         allGroupIds = Group.objects.values('id')
+
         #get students which are in some group
         groupStudents = []
         for id in allGroupIds:
@@ -145,6 +146,22 @@ class new_group(TemplateView):
             groupStudents.extend(help)
         #get students without a group
         data = set(allStudents).difference(set(groupStudents))
-        args = {'studentsWihtoutgroup': data, 'form': form}
+        args = {'studentsWihtoutgroup': data, 'form': self.form}
         print(data)
+        return render(request, args)
+
+    def post(self,request):
+        form = newGroupForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data['newGroupForm']
+        args = {'form': form, 'text': text}
         return render(request, self.template_name, args)
+
+    def dispatch(self, *args, **kwargs):
+        self.id = kwargs['pk']
+        return super(new_group,self).dispatch(*args,**kwargs)
+
+    def form_valid(self, form):
+        form.save()
+        item = Group.objects.get(id=self.item_id)
+        return HttpResponse(render_to_string('pages/modals/editGroupDialogSuccess.html', {'group': item}))

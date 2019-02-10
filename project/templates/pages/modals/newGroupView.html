@@ -45,4 +45,25 @@
       </div>
     </div>
   </div>
+  <script>
+    var form_options = {
+        target: '#newGroupView',
+        success: function() {}
+    }
+    $('#newGroupForm').ajaxForm(form_options);
+
+    $(document).ready(function() {
+      $('#x').click(closeModal);
+      $('#cancel').click(closeModal);
+    });
+
+    function closeModal() {
+      setTimeout(function() { jQuery('#newGroupView').modal('hide'); }, 1000);
+      $('body').on('hidden.bs.modal', '.modal', function () {
+          $(this).removeData('bs.modal');
+          window.location.reload(true);
+          console.log('Close success!');
+      });
+    }
+  </script>
 </form>

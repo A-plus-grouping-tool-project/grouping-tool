@@ -2,8 +2,8 @@
 
 //add item to the list
 function newItem() {
-    var ul = document.getElementById("list");
-    var li = document.createElement("li");
+    let ul = document.getElementById("list");
+    let li = document.createElement("li");
 
     li.appendChild(document.createTextNode("hei"));
     ul.appendChild(li);
@@ -22,8 +22,8 @@ $(".list-group .list-group-item").click(function(e) {
 
 //Detach elements to another list
 $(".list-group .list-group-item").dblclick(function(e){
-    var list1 = document.getElementById("list1");
-    var list2 = document.getElementById("list2");
+    let list1 = document.getElementById("list1");
+    let list2 = document.getElementById("list2");
 
     if (this.parentNode === list1) {
         $(e.target).removeClass("active");
@@ -37,10 +37,10 @@ $(".list-group .list-group-item").dblclick(function(e){
 
 // Add selected items from list one to list two
 $("#addButton").click(function(e) {
-    var list = document.getElementById("list1");
-    var list2 = document.getElementById("list2");
-    var num = list.getElementsByTagName("li");
-    for (var i=0; i <= num.length; i++) {
+    let list = document.getElementById("list1");
+    let list2 = document.getElementById("list2");
+    let num = list.getElementsByTagName("li");
+    for (let i=0; i <= num.length; i++) {
         if ($(num[i]).hasClass("active")) {
             $(num[i]).removeClass("active");
             list2.appendChild(num[i]);
@@ -50,13 +50,13 @@ $("#addButton").click(function(e) {
 
 // Remove selected items from list 2 and move them to list 1
 $("#removeButton").click(function(e) {
-    var list = document.getElementById("list1");
-    var list2 = document.getElementById("list2");
-    var num = list2.getElementsByTagName("li");
-    for (var i=0; i <= num.length; i++) {
+    let list = document.getElementById("list1");
+    let list2 = document.getElementById("list2");
+    let num = list2.getElementsByTagName("li");
+    for (let i=0; i <= num.length; i++) {
         if ($(num[i]).hasClass("active")) {
             $(num[i]).removeClass("active");
-            list1.appendChild(num[i]);
+            list.appendChild(num[i]);
             i = 0;
         }
     }
