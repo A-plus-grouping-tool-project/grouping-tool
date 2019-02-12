@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from project.credentials import API_TOKEN
 import requests
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from app.models import Group
 from app.models import Student
 from .forms import EditGroupForm
@@ -15,7 +15,7 @@ def mainPage(request):
 def query(request):
     contents = requests.get('http://localhost:8000/api/v2/users/2',
                             headers={'Authorization': f('Token {API_TOKEN}')})
-    return HttpResponse(contents);
+    return HttpResponse(contents)
 
 class teacherView(ListView):
     model = Group
@@ -23,6 +23,37 @@ class teacherView(ListView):
 
     def get_queryset(self):
         return Group.objects.all().order_by('group_id')
+
+class studentView(ListView):
+    model = Group
+    template_name = 'pages/studentView.html'
+
+    def get_queryset(self):
+        return Group.objects.all()
+
+class view_group(UpdateView):
+    model = Group
+    form_class = EditGroupForm
+    template_name = 'pages/modals/viewGroupDialog.html'
+
+    #add students in the group to modals data
+    def get_context_data(self, **kwargs):
+        context = super(view_group, self).get_context_data(**kwargs)
+        groupStudents = Group.objects.get(id=self.id).students.all()
+        context['studentsInGroup'] = set(groupStudents)
+        return context
+
+    #Add group_id to the request
+    def dispatch(self, *args, **kwargs):
+        self.id = kwargs['pk']
+        return super(view_group, self).dispatch(*args, **kwargs)
+
+    #Do if form is valid
+    def form_valid(self, form):
+        form.save()
+        item = Group.objects.get(id=self.id)
+        #Call the success dialog
+        return HttpResponse(render_to_string('pages/modals/editGroupDialogSuccess.html', {'group': item}))
 
 class edit_group(UpdateView):
     model = Group
