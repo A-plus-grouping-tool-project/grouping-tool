@@ -1,6 +1,6 @@
 import json
 from apirequests import views
-from app.models import Student, Group, Students_in_course
+from app.models import Student, Group, Course
 from . import csv_maker
 
 #def group_students(request):
@@ -33,13 +33,6 @@ from . import csv_maker
 def group_students(group_size =  3, course_id = 1):
     resp = views.students_from_course(course_id)
     data = json.loads(resp.content)
-<<<<<<< HEAD
-    course_students = map(format_student_data, data['count'])
-    print(course_students)
-     
-#wip
-def format_student_data(student_object):
-=======
     for i in range(data['count']):
         student = data['results'][i]
         student_to_database(student, course_id)
@@ -52,7 +45,6 @@ def format_student_data(student_object):
             group.course_id = group_id_iterator
     
 def student_to_database(student_object, course_id):
->>>>>>> 40ad531... Add functionality to group_students
     student = Student()
 
     #student.id = student_object['group_id']
@@ -62,11 +54,8 @@ def student_to_database(student_object, course_id):
     if(student_object['student_id'] != None):
         student.student_id = student_object['student_id']
     student.save()
-<<<<<<< HEAD
-=======
     if (course_id != None):
         student_in_course = Students_in_course()
         student_in_course.student = student_object['id']
         student_in_course.course = course_id
     #return student()
->>>>>>> 40ad531... Add functionality to group_students
