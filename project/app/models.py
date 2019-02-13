@@ -11,7 +11,6 @@ class Course(models.Model):
         return self.course_name
 
 class Student(models.Model):
-    id = models.IntegerField(primary_key=True)
     username = models.CharField(max_length=50)
     student_id = models.CharField(max_length=10)
     email = models.CharField(max_length=50)
@@ -20,7 +19,7 @@ class Student(models.Model):
     #    return self.id + SEP + self.username + SEP + self.student_id +  SEP + self.email
 
 class Group(models.Model):
-    group_id = models.IntegerField(primary_key=True)
+    group_id = models.IntegerField(default=0)
     course_id = models.IntegerField()
     students = models.ManyToManyField(Student)
 
