@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from project.credentials import API_TOKEN
 import requests
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from app.models import Group
 from app.models import Student
 from .forms import EditGroupForm
