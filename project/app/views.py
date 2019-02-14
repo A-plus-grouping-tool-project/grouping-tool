@@ -9,6 +9,7 @@ from . import grouper
 from . import csv_maker
 from django.views.generic import ListView, UpdateView
 from django.template.loader import render_to_string
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def mainPage(request):
     return HttpResponse("Hello, world. You're at the app main page.")
@@ -22,9 +23,14 @@ def group_students(self, **kwargs):
     grouper.group_students(kwargs)
     return HttpResponse('check your dadabase :D')
 
-class teacherView(ListView):
+class teacherView(LoginRequiredMixin, ListView):
+    raise_exception = True
     model = Group
     template_name = 'pages/teacherView.html'
+
+    def get(self, request):
+        name = request.user.first_name
+        return render(request, self.template_name, {'nimi': name})
 
     def get_queryset(self):
         return Group.objects.all().order_by('group_id')

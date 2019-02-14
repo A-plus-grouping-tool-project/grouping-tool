@@ -18,6 +18,7 @@ def store_last_login(sender, **kwargs):
     user = kwargs.get('user', None)
     if request and user:
         request.session['last_login'] = str(user.last_login)
+        request.session.set_expiry(0)
 
 
 @receiver(user_logged_in)

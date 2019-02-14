@@ -3,6 +3,7 @@ from django.conf.urls import url
 from . import views
 from apirequests import views as apiviews
 from grouper import views as groupviews
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^$', views.mainPage, name='mainPage'),
@@ -13,4 +14,5 @@ urlpatterns = [
     url(r'^student/', views.studentView.as_view(), name='studentView'),
     url(r'^edit_group/<pk>', views.edit_group.as_view(), name='edit_group'),
     url(r'^view_group/<pk>', views.view_group.as_view(), name='view_group'),
+    url(r'^logout/', auth_views.LogoutView.as_view()),
 ]
