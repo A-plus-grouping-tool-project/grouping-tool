@@ -20,7 +20,10 @@ class Student(models.Model):
 
 class Group(models.Model):
     group_id = models.IntegerField(default=0)
-    course_id = models.IntegerField()
+    course = models.ForeignKey(
+        'Course',
+        on_delete=models.CASCADE,
+    )
     students = models.ManyToManyField(Student)
 
     #def __str__(self):
