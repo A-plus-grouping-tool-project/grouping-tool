@@ -17,7 +17,7 @@ A tool for managing groups in A+
 `DB_USERNAME = 'username'
     DB_PASSWORD = 'password'
     DB_NAME = 'dbname'
-    TOKEN = ''`
+    API_TOKEN = ''`
 
    You can get your user token from the user settings of your local A+,
    but an empty token is enough to get the program running.
