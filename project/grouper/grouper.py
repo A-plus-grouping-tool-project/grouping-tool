@@ -3,46 +3,26 @@ from apirequests import views
 from app.models import Student, Group, Course
 from . import csv_maker
 
-#def group_students(request):
-#    #define group size
-#    size = 3
-#    #HttpResponse from apirequests app's studentsFromCourse function
-#    #Currently parameter doesn't affect return value.
-#    resp = views.students_from_course(1)
-#    #using Python's json library to extract the content
-#    data = json.loads(resp.content)
-#    #some assisting variables
-#    j = 0
-#    group_id = 1
-#    #grouping logic
-#    for i in range(data['count']):
-#        if(i == 0):
-#            csv_maker.create_csv()
-#        else:
-#            student_object = data['results'][i]
-#            student_object.update({'group_id':group_id}) #student is linked to group with group-key
-#            csv_maker.export_to_csv(student_object)
-#            if j < size:
-#                j += 1
-#            else:
-#                group_id += 1
-#                j = 1
-#    return HttpResponse('check your project-folder for groups.csv')
-
 #wip
 def group_students(group_size =  3, course_id = 1):
     resp = views.students_from_course(course_id)
     data = json.loads(resp.content)
+    group_id_iterator = 1
+    group = init_group(course_id, group_id_iterator)
     for i in range(data['count']):
         student = data['results'][i]
-        student_to_database(student, course_id)
-        group.group_id = group_id_iterator
-        group.students.add(student['id'])
+        student_object = student_to_database(student, course_id)
+        group.students.add(student_object)
         if i % group_size == 0:
             group.save()
-            group = Group()
             group_id_iterator += 1
-            group.course_id = group_id_iterator
+            group = init_group(course_id, group_id_iterator)
+
+def init_group(course_id, group_id):
+    group = Group()
+    group.group_id = group_id
+    group.course_id = course_id
+    return group
     
 def student_to_database(student_object, course_id = -1):
     student = Student()
@@ -59,4 +39,4 @@ def student_to_database(student_object, course_id = -1):
         course.id = course_id
         course.save()
         student.courses.add(course)
-    #return student()
+    return student
