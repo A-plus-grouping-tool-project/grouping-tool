@@ -6,7 +6,7 @@
 <html lang="en">
 
   <head>
-    <title>Teacher view</title>
+    <title>Student view</title>
     <link rel="stylesheet" href="{% static 'css/teacherView.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'favicons/favicon.ico' %}"/>
     <!-- Get jQuery and bootstrap.js from CDN -->
@@ -18,8 +18,8 @@
     <script
       src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
       integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-      crossorigin="anonymous">
-    </script>
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="{% static 'css/editGroup.css' %}">
   </head>
 
@@ -51,9 +51,6 @@
             <button class="btn" id="addGroupBtn">
               New Group
             </button>
-            <button class="btn" id="autoGroupBtn" data-toggle="modal" data-target="#autoModal">
-              Create Groups Automatically
-            </button>
             <button class="btn" id="groupSettingsBtn" data-toggle="modal" data-target="#groupSettings">
               Group Settings
             </button>
@@ -64,10 +61,10 @@
           <!-- Modal -->
           <div
             class="modal fade"
-            id="editGroupModal"
+            id="viewGroupModal"
             tabindex="-1"
             role="dialog"
-            aria-labelby="editGroupModal"
+            aria-labelby="viewGroupModal"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
@@ -79,25 +76,25 @@
               <th id="groupName">Name</th>
               <th id="groupMembers">Members</th>
               <th id="groupType">Type</th>
-              <th id="editGroup"></th>
+              <th id="viewGroup"></th>
             </tr>
             {% for group in object_list %}
             <tr>
               <td>{{group.group_id}}</td>
               <td>
                 {% for student in group.students.all %}
-                  {{student.username}}
+                  {{ student.username }}
                 {% endfor %}
               </td>
               <td>{{group.group_type}}</td>
               <td>
                 <button
-                  id="editGroupBtn"
+                  id="viewGroupBtn"
                   class="btn"
                   data-toggle="modal"
-                  data-target="#editGroupModal"
-                  href="{% url 'edit_group' group.id %}">
-                  Edit
+                  data-target="#viewGroupModal"
+                  href="{% url 'view_group' group.id %}">
+                  View
                 </button>
               </td>
             </tr>
@@ -112,8 +109,13 @@
     {% include "./modals/settingsView.html" %}
     <!-- Script for automatic grouping modal -->
     <script src="{% static 'js/autoGroupModal.js' %}"></script>
-
+    <!-- Clears data passed into the viewGroupDialog when the modal is closed -->
+    <script>
+      $('body').on('hidden.bs.modal', '.modal', function() {
+        $(this).removeData('bs.modal');
+      });
+    </script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
-    <script src="{% static 'js/editGroupModal.js'%}"></script>
   </body>
+
 </html>

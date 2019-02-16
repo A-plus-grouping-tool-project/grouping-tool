@@ -1,19 +1,20 @@
 //remove student/students from group
-function moveL() {
+moveL = () => {
   //group students in form input
-  let students = document.getElementById('id_students');
+  const students = document.getElementById('id_students');
   //group's student list
-  let studentList = document.getElementById('studentList');
+  const studentList = document.getElementById('studentList');
   //groupless student list
-  let studentsWithoutGroup = document.getElementById('noGroupStudentList');
+  const studentsWithoutGroup = document.getElementById('noGroupStudentList');
   //get selected students' ids
-  let selectedStudents = getSelectValues(studentList);
+  const selectedStudents = getSelectValues(studentList);
+  
   //unselect selected students in form select as well
-  selectedStudents.forEach(function (selectedStudent) {
+  selectedStudents.forEach((selectedStudent) => {
     let theOption;
-    for (let i = 0; i < students.options.length; i++){
-      let option = students.options[i];
-      if (option.value == selectedStudent.id){
+    for (let i = 0; i < students.options.length; i++) {
+      const option = students.options[i];
+      if (option.value == selectedStudent.id) {
         theOption = option.index;
       }
     }
@@ -23,12 +24,12 @@ function moveL() {
 };
 
 //returns selected students' ids
-function getSelectValues(select) {
-  let result = [];
-  let options = select.options;
-  let opt;
-  for (let i=0, iLen=options.length; i<iLen; i++) {
-    opt = options[i];
+getSelectValues = (select) => {
+  const result = [];
+  const options = select.options;
+
+  for (let i = 0, iLen = options.length; i < iLen; i++) {
+    const opt = options[i];
     if (opt.selected) {
       result.push(opt);
     }
@@ -37,21 +38,22 @@ function getSelectValues(select) {
 }
 
 //add student/students to group
-function moveR() {
+moveR = () => {
   //group students in form input
-  let students = document.getElementById('id_students');
+  const students = document.getElementById('id_students');
   //group's student list
-  let studentList = document.getElementById('studentList');
+  const studentList = document.getElementById('studentList');
   //groupless student list
-  let studentsWithoutGroup = document.getElementById('noGroupStudentList');
+  const studentsWithoutGroup = document.getElementById('noGroupStudentList');
   //get selected students' ids
-  let selectedStudents = getSelectValues(studentsWithoutGroup);
+  const selectedStudents = getSelectValues(studentsWithoutGroup);
   //select selected students in form select as well
-  selectedStudents.forEach(function (selectedStudent) {
+
+  selectedStudents.forEach((selectedStudent) => {
     let theOption;
-    for (let i = 0; i < students.options.length; i++){
-      let option = students.options[i];
-      if (option.value == selectedStudent.id){
+    for (let i = 0; i < students.options.length; i++) {
+      const option = students.options[i];
+      if (option.value == selectedStudent.id) {
         theOption = option.index;
       }
     }
@@ -61,21 +63,22 @@ function moveR() {
 };
 
 //remove or add student/students to group by doubleclick
-function moveStudentDoubleClick(e, element) {
+moveStudentDoubleClick = (e, element) => {
   //group students in form input
-  let students = document.getElementById('id_students');
+  const students = document.getElementById('id_students');
   //groupless student list and group's student list
-  let noGroupStudentList = document.getElementById('noGroupStudentList');
-  let studentList = document.getElementById('studentList');
+  const noGroupStudentList = document.getElementById('noGroupStudentList');
+  const studentList = document.getElementById('studentList');
+  
   //if student is in group's student list
   //else if student is in groupless student list
-  if(element.parentNode == studentList){
+  if (element.parentNode == studentList) {
     element.parentNode.removeChild(element);
     //remove student from form's input value
     let theOption;
-    for (let i = 0; i < students.options.length; i++){
-      let option = students.options[i];
-      if (option.value == e.target.id){
+    for (let i = 0; i < students.options.length; i++) {
+      const option = students.options[i];
+      if (option.value == e.target.id) {
         theOption = option.index;
       }
     }
@@ -83,15 +86,15 @@ function moveStudentDoubleClick(e, element) {
     //add to groupless student list
     noGroupStudentList.appendChild(element);
   }
-  else if(element.parentNode == noGroupStudentList){
+  else if (element.parentNode == noGroupStudentList) {
     //remove from groupless student list and add to group's student list
     element.parentNode.removeChild(element);
     studentList.appendChild(element);
     //add student to form's input value
     let theOption;
-    for (let i = 0; i < students.options.length; i++){
-      let option = students.options[i];
-      if (option.value == e.target.id){
+    for (let i = 0; i < students.options.length; i++) {
+      const option = students.options[i];
+      if (option.value == e.target.id) {
         theOption = option.index;
       }
     }
