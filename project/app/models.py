@@ -16,7 +16,8 @@ class Student(models.Model):
     email = models.CharField(max_length=50)
     courses = models.ManyToManyField(Course)
     def __str__(self):
-        return self.id + SEP + self.username + SEP + self.student_id +  SEP + self.email
+        return f'%s{SEP} %s{SEP} %s{SEP} %s' % \
+            (self.id, self.username, self.student_id, self.email)
 
 class Group(models.Model):
     group_id = models.IntegerField(default=0)
@@ -27,4 +28,5 @@ class Group(models.Model):
     students = models.ManyToManyField(Student)
 
     def __str__(self):
-        return self.group_id + SEP + self.course_code
+        return f'%s{SEP} %s' % \
+            (self.group_id, self.course_code)
