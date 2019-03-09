@@ -130,12 +130,12 @@ class experimental(TemplateView):
             group_students(request)
         return render(request, self.template_name, args)
 
-class new_group(UpdateView):
+class new_group(ListView):
     model = Group
     template_name = 'pages/modals/newGroupView.html'
     form_class = newGroupForm
 
-    def get(self, request):
+    def get_queryset(self):
         allStudents = Student.objects.all()
         allGroupIds = Group.objects.values('id')
 
@@ -145,10 +145,7 @@ class new_group(UpdateView):
             help = Group.objects.get(id=id.get('id')).students.all()
             groupStudents.extend(help)
         #get students without a group
-        data = set(allStudents).difference(set(groupStudents))
-        args = {'studentsWihtoutgroup': data, 'form': self.form}
-        print(data)
-        return render(request, args)
+        return set(allStudents).difference(set(groupStudents))
 
     def post(self,request):
         form = newGroupForm(request.POST)
@@ -156,10 +153,6 @@ class new_group(UpdateView):
             text = form.cleaned_data['newGroupForm']
         args = {'form': form, 'text': text}
         return render(request, self.template_name, args)
-
-    def dispatch(self, *args, **kwargs):
-        self.id = kwargs['pk']
-        return super(new_group,self).dispatch(*args,**kwargs)
 
     def form_valid(self, form):
         form.save()
