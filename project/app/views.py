@@ -5,9 +5,10 @@ from django.shortcuts import render
 from app.models import Group
 from app.models import Student
 from .forms import EditGroupForm
+from . import grouper
+from . import csv_maker
 from django.views.generic import ListView, UpdateView
 from django.template.loader import render_to_string
-
 
 def mainPage(request):
     return HttpResponse("Hello, world. You're at the app main page.")
@@ -16,6 +17,10 @@ def query(request):
     contents = requests.get('http://localhost:8000/api/v2/users/2',
                             headers={'Authorization': f('Token {API_TOKEN}')})
     return HttpResponse(contents)
+
+def group_students(self, **kwargs):
+    grouper.group_students(kwargs)
+    return HttpResponse('check your dadabase :D')
 
 class teacherView(ListView):
     model = Group
