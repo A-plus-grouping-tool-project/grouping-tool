@@ -5,6 +5,6 @@ from apirequests import views
 from . import grouper
 from . import csv_maker
 
-def group_students(request):
-    grouper.group_students()
+def group_students(self, **kwargs):
+    grouper.group_students(kwargs)
     return HttpResponse('check your dadabase :D')

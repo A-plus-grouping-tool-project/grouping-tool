@@ -7,6 +7,7 @@
     <button type="button" id="x" class="close" name="button" data-dismiss="modal" aria-hidden="true">x</button>
     <h4 class="modal-title" id="editGroupTitle">Edit group {{ group.group_id }}</h4>
   </div>
+  
   <div class="modal-body" onload="script();">
     {% csrf_token %}
     <div class="fluid-container" style="overflow:hidden">
@@ -26,6 +27,7 @@
           </select>
         </div>
       </div>
+
       <div id="centerBtns" class="col-sm-2">
         <button id="moveLeftBtn" type="button" name="moveLeft" onclick="moveL()">
           <span class="glyphicon glyphicon-arrow-left"></span>
@@ -34,6 +36,7 @@
           <span class="glyphicon glyphicon-arrow-right"></span>
         </button>
       </div>
+
       <div id="rightSide" class="col-sm-5">
         <div class="form-group">
           <h5>Selected students</h5>
