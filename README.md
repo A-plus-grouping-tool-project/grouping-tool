@@ -64,3 +64,48 @@ A tool for managing groups in A+
     ex. `localhost:7000/app/group_students`
     
 4. Check table `groups` in the database used by the grouping-tool tool
+    
+#### Setting up a working LTI authentication between development aplus and grouper-tool
+
+1. Activate your grouper-tool venv, and navigate to grouper-tool's manage.py location
+
+2. remember to (re)install requirements.txt packages
+
+3. run database migrations
+
+4. Run python manage.py add_lti_key -d "some description"
+
+5. Copy the key and secret somewhere for later use
+
+6. Run grouper-tool server (remember to designate some non-default port)
+
+7. Now run another terminal, activate Aplus venv and start your aplus development server
+
+8. Open the admin interface within your web browser (localhost:aplusport/admin)
+
+9. Choose lti services and click add service
+
+10. Fill some of the fields as described below:
+
+- `Url: http://localhost:"PORT HERE"/auth/lti_login` NOTE: replace "PORT HERE" with your port!
+
+- Destination region: hosted internally
+
+- Menu label: grouper
+
+- Check Enabled
+
+- Access settings: Public service, no API access
+
+- Consumer key: Paste the key you saved earlier
+
+- Consumer secret: Paste the secret you saved earlier
+
+- Hit save
+
+11. Navigate to some test course from your aplus frontpage (logged in as admin)
+
+12. Click edit course > Menu > Add new menu item > choose the recently added lti service from the services list > Send
+
+13. You should now see a new grouper menu item on the left side pane, clicking it will authenticate and redirect you to grouper's teacher view
+
