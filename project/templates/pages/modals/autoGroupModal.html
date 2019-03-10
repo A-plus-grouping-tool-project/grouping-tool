@@ -8,35 +8,22 @@
         </h3>
       </div>
 
-      <div class="modal-body">
-        <h4>Sorting method:</h4>
-        <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-          >
-            <span id="chosenItem">Random</span>
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a class="menuItem" href="#">Random</a></li>
-            <li><a class="menuItem" href="#">Method 2</a></li>
-            <li><a class="menuItem" href="#">Method 3</a></li>
-          </ul>
+      <form id="create-group" class="form" role="form" action="{% url 'group' course.course_id  %}" method="post">
+        <div class="modal-body">
+          <h4>Group size:</h4>
+          <input id="autoGroupSize" name="autoGroupSize" type="number" value="1" min="1"/>
         </div>
-        <br />
-        <h4>Group size:</h4>
-        <input id="autoGroupSize" name="autoGroupSize" type="number" value="1" min="1"/>
-      </div>
 
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal">
-          Cancel
-        </button>
-        <button class="btn" data-dismiss="modal" onclick="createGroups()">
-          Create groups
-        </button>
-      </div>
-      
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal">
+            Cancel
+          </button>
+          <button class="btn btn-primary" data-dismiss="modal" type="submit">
+            Create groups
+          </button>
+        </div>
+      </form>
+
     </div>
   </div>
 </div>

@@ -28,7 +28,7 @@ def init_group(course_id, group_id):
     return group
 
 def delete_group(identifier):
-    Group.objects.filter(id=identifier).delete()
+    Group.objects.get(id=identifier).delete()
 
 def find_empty_group(course_id):
     Group.objects.filter(course = course_id).filter(students = None)
