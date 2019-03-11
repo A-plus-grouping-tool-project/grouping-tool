@@ -52,3 +52,15 @@ A tool for managing groups in A+
 
 7. Add object to ManyToManyField (remember to save objects before adding)
     ex. `group.students.add(student)`
+
+#### Running aplus server to test back-end
+
+1. Follow the steps in the README of apluslms/course-templates repository
+    https://github.com/apluslms/course-templates
+  
+2. Populate the database of aplus server instance with students and enroll them to course 1 for example
+
+3. Navigate to app/group_students
+    ex. `localhost:7000/app/group_students`
+    
+4. Check table `groups` in the database used by the grouping-tool tool
