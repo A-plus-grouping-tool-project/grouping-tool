@@ -20,6 +20,8 @@ def query(request):
     return HttpResponse(contents)
 
 def group_students(self, **kwargs):
+    print("grouping students")
+    grouper.create_student_entries()
     grouper.group_students(kwargs)
     return HttpResponse('check your dadabase :D')
 

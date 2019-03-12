@@ -27,8 +27,7 @@ def find_user(user_id):
         return HttpResponse(f'Something went wrong finding user. Is the user_id: {user_id} correct?')
 
 #Returns all the students from course course id hard coded for testing purposes
-def students_from_course(course_id):
-    course_id = 1
+def students_from_course(course_id = 1):
     students = requests.get(f'{API_URL}/courses/{course_id}/students/',
                             headers={'Authorization': f'Token {API_TOKEN}'})
     if students.status_code == 200:
