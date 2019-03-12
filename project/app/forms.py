@@ -6,3 +6,7 @@ class EditGroupForm(forms.ModelForm):
     class Meta:
         model = Group
         fields = ('students',)
+
+class ExperimentalForm(forms.Form):
+    group_size = forms.IntegerField(required=False)
+    delete_rows = forms.BooleanField(required=False)

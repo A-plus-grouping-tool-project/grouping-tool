@@ -4,10 +4,10 @@ import requests
 from django.shortcuts import render
 from app.models import Group
 from app.models import Student
-from .forms import EditGroupForm
-from . import grouper
+from .forms import EditGroupForm, ExperimentalForm
+from . import grouper, courses, students
 from . import csv_maker
-from django.views.generic import ListView, UpdateView
+from django.views.generic import ListView, UpdateView, TemplateView
 from django.template.loader import render_to_string
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -19,11 +19,14 @@ def query(request):
                             headers={'Authorization': f('Token {API_TOKEN}')})
     return HttpResponse(contents)
 
-def group_students(self, **kwargs):
-    print("grouping students")
-    grouper.create_student_entries()
-    grouper.group_students(kwargs)
+def group_students(request):
+    cid = courses.resolve_course_id(request)
+    if cid != -1:
+        students.create_student_entries(cid)
+        gs = request.session.get('group_size', 3)
+        grouper.group_students(course_id = cid, group_size = gs)
     return HttpResponse('check your dadabase :D')
+
 
 class teacherView(LoginRequiredMixin, ListView):
     raise_exception = True
@@ -98,3 +101,27 @@ class edit_group(UpdateView):
         item = Group.objects.get(id=self.id)
         #Call the success dialog
         return HttpResponse(render_to_string('pages/modals/editGroupDialogSuccess.html', {'group': item}))
+
+class experimental(TemplateView):
+    template_name = 'pages/experimental.html'
+
+    def get(self, request):
+        form = ExperimentalForm()
+        if 'course_id' in request.session.keys():
+            msg = "grouper pointing to course " +request.session['course_id']
+        else:
+            msg = "Grouper not pointing to any course. LTI-authenticate from aplus."
+        return render(request, self.template_name, {'form': form, 'msg': msg})
+
+    def post(self, request):
+        form = ExperimentalForm(request.POST)
+        if form.is_valid():
+            group_size = form.cleaned_data['group_size']
+            delete_rows = form.cleaned_data['delete_rows']
+        args = {'form': form, 'group_size': group_size}
+        if delete_rows:
+            grouper.truncate()
+        if group_size is not None:
+            request.session['group_size'] = group_size
+            group_students(request)
+        return render(request, self.template_name, args)

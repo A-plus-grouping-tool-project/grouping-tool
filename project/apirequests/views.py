@@ -7,13 +7,13 @@ API_URL = 'http://localhost:8000/api/v2'
 
 #Returns all users from api
 def get_users():
-    users = requests.get('{API_URL}/users/',
+    users = requests.get(f'{API_URL}/users/',
                             headers={'Authorization': f'Token {API_TOKEN}'})
     return HttpResponse(users)
 
 #Returns all courses from api
 def get_courses():
-    courses = requests.get('{API_URL}/courses/',
+    courses = requests.get(f'{API_URL}/courses/',
                             headers={'Authorization': f'Token {API_TOKEN}'})
     return HttpResponse(courses)
 

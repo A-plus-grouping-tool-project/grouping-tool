@@ -33,3 +33,11 @@ def add_student(student_object, course):
 
 def student_in_database(id):
     return Student.objects.filter(student_id = id).exists()
+
+def create_student_entries(course_id = 1):
+    resp = views.students_from_course(course_id)
+    data = json.loads(resp.content)
+    course = courses.add_course(course_id)
+    for i in range(data['count']):
+        student = data['results'][i]
+        add_student(student, course)

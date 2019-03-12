@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^edit_group/<pk>', views.edit_group.as_view(), name='edit_group'),
     url(r'^view_group/<pk>', views.view_group.as_view(), name='view_group'),
     url(r'^logout/', auth_views.LogoutView.as_view()),
+    url(r'^experimental/', views.experimental.as_view(), name='experimental'),
 ]
