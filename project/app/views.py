@@ -10,6 +10,8 @@ from . import csv_maker
 from django.views.generic import ListView, UpdateView, TemplateView
 from django.template.loader import render_to_string
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 
 def mainPage(request):
     return HttpResponse("Hello, world. You're at the app main page.")
@@ -28,7 +30,8 @@ def group_students(request):
     return HttpResponse('check your dadabase :D')
 
 
-class teacherView(LoginRequiredMixin, ListView):
+@method_decorator(staff_member_required, name='dispatch')
+class teacherView(ListView):
     raise_exception = True
     model = Group
     template_name = 'pages/teacherView.html'
