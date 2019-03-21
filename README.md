@@ -1,5 +1,6 @@
-# grouping-tool
-A tool for managing groups in A+
+# A+ Grouping Tool
+A prototype tool for managing groups in A+. The functionality in this version cannot be
+triggered through the user interface, so testing back and front end has to be done separately.
 
 #### Setting up the development environment
 1. You need to have installed and created a virtual environment to run this program (see https://packaging.python.org/guides/installing-using-pip-and-virtualenv/ for more information about setting up a virtual environment).
@@ -19,53 +20,12 @@ A tool for managing groups in A+
     DB_NAME = 'dbname'
     API_TOKEN = ''`
 
-   You can get your user token from the user settings of your local A+,
-   but an empty token is enough to get the program running.
+   You can get your user token from the user settings of your local A+.
 
 5. Run migrations
     `python3 manage.py migrate`
 
-#### Running local test server
-1. Activate virtualenv
-
-2. From project root, start test server on localhost:7000 (or any port you prefer except 8000)
-
-    `python3 manage.py runserver 7000`
-
-#### Adding data by shell to models
-1. Activate virtualenv
-
-2. Open shell
-    `python3 manage.py shell`
-
-3. Import your model
-    ex. `from app.models import Student`
-
-4. Create model object
-    ex. `student = Student(1234,"username", "student id","email")`
-
-5. Save object
-    ex. `student.save()`
-
-6. If your model has ManyToManyField create model object like this
-    ex. `group = Group(group_id=101,course_code="course_code",group_type=1)`
-
-7. Add object to ManyToManyField (remember to save objects before adding)
-    ex. `group.students.add(student)`
-
-#### Running aplus server to test back-end
-
-1. Follow the steps in the README of apluslms/course-templates repository
-    https://github.com/apluslms/course-templates
-  
-2. Populate the database of aplus server instance with students and enroll them to course 1 for example
-
-3. Navigate to app/group_students
-    ex. `localhost:7000/app/group_students`
-    
-4. Check table `groups` in the database used by the grouping-tool tool
-    
-#### Setting up a working LTI authentication between development aplus and grouper-tool
+### Setting up a working LTI authentication between development aplus and grouper-tool
 
 1. Activate your grouper-tool venv, and navigate to grouper-tool's manage.py location
 
@@ -109,3 +69,32 @@ A tool for managing groups in A+
 
 13. You should now see a new grouper menu item on the left side pane, clicking it will authenticate and redirect you to grouper's teacher view
 
+14. You can test grouping functionality now by navigating to /app/experimental if you have added students to the course.
+
+#### Running local test server
+1. Activate virtualenv
+
+2. From project root, start test server on localhost:7000 (or any port you prefer except 8000)
+
+    `python3 manage.py runserver 7000`
+
+#### Adding data by shell to models (for user interface testing)
+1. Activate virtualenv
+
+2. Open shell
+    `python3 manage.py shell`
+
+3. Import your model
+    ex. `from app.models import Student`
+
+4. Create model object
+    ex. `student = Student(1234,"username", "student id","email")`
+
+5. Save object
+    ex. `student.save()`
+
+6. If your model has ManyToManyField create model object like this
+    ex. `group = Group(group_id=101,course_code="course_code",group_type=1)`
+
+7. Add object to ManyToManyField (remember to save objects before adding)
+    ex. `group.students.add(student)`
