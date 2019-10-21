@@ -6,7 +6,7 @@ numpy==1.15.3
 psycopg2==2.7.5
 pytz==2018.7
 requests==2.20.0
-urllib3==1.24.1
+urllib3==1.24.2
 virtualenv==16.0.0
 django-bootstrap3
 git+https://github.com/Aalto-LeTech/django-lti-login.git@master#egg=django-lti-login
